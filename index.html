@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>Moniter</title>
+  </head>
+  <body>
+    <main>
+      <h1>Moniter</h1>
+      <ul id="instruments"></ul>
+    </main>
+    <script>
+      function findUsernameWithMaxHourlyPnl(data) {
+        // Find the index of the maximum hourly P&L
+        const maxHourlyPnlIndex = data.hourly_pnl.reduce(
+          (maxIndex, current, index, array) => {
+            return parseFloat(current) > parseFloat(array[maxIndex])
+              ? index
+              : maxIndex;
+          },
+          0
+        );
+
+        // Use the index to find the corresponding username
+        const usernameWithMaxHourlyPnl = data.users[maxHourlyPnlIndex];
+
+        return usernameWithMaxHourlyPnl;
+      }
+      const instruments = [
+        "CSCO",
+        "ING",
+        "NVDA",
+        "NVDA_202403_050C",
+        "NVDA_202403_050P",
+        "NVDA_202403_075C",
+        "NVDA_202403_075P",
+        "NVDA_202403_100C",
+        "NVDA_202403_100P",
+        "NVDA_202403_F",
+        "NVDA_202406_F",
+        "NVDA_202409_F",
+        "NVDA_DUAL",
+        "OB5X_202403_080C",
+        "OB5X_202403_080P",
+        "OB5X_202403_100C",
+        "OB5X_202403_100P",
+        "OB5X_202403_120C",
+        "OB5X_202403_120P",
+        "OB5X_202403_F",
+        "OB5X_202406_F",
+        "OB5X_202409_F",
+        "PFE",
+        "SAN",
+        "SAN_DUAL",
+      ];
+      for (const inst of instruments) {
+        //create empty li node with id inst under the ul with id instruments
+        var node = document.createElement("li");
+        node.setAttribute("id", inst);
+        document.getElementById("instruments").appendChild(node);
+      }
+      // fetch localhost:3000 every second
+      setInterval(function () {
+        fetch("http://localhost:3000")
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            // my json is a dictionary with keys username, value data
+            // I want to findUsernameWithMaxHourlyPnl on the data and display it
+            // iterate through the dictionary
+
+            for (const inst in data) {
+              var username = findUsernameWithMaxHourlyPnl(data[inst]);
+              var str = inst + " " + username;
+              document.getElementById(inst).innerHTML = str;
+              if (username !== "team-001") {
+                document.getElementById(inst).style.color = "red";
+              } else {
+                document.getElementById(inst).style.color = "green";
+              }
+            }
+          });
+      }, 1000);
+    </script>
+  </body>
+</html>
