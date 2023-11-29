@@ -9,6 +9,7 @@ body {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
+    padding-right: 40px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -23,7 +24,7 @@ body {
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
+    gap: 30px; /* Increased gap */
   }
   
   li {
@@ -31,6 +32,7 @@ body {
     padding: 10px;
     border-radius: 8px;
     display: flex;
+    flex-direction: column; /* Stack content vertically */
     justify-content: space-between;
     align-items: center;
     background-color: #ddd; /* Slightly lighter background color */

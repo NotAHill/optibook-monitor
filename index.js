@@ -140,7 +140,6 @@ const port = 3000;
 app.use(cors());
 
 app.get("/", (req, res) => {
-    console.log(global_data_store)
   res.send(global_data_store);
 });
 

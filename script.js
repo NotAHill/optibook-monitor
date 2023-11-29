@@ -1,12 +1,15 @@
 function findUsernameWithMaxHourlyPnl(data) {
-    const maxHourlyPnlIndex = data.hourly_pnl.reduce(
-      (maxIndex, current, index, array) => {
-        return parseFloat(current) > parseFloat(array[maxIndex])
-          ? index
-          : maxIndex;
-      },
-      0
-    );
+    var maxHourlyPnlIndex = 0;
+    var maxHourlyPnl = parseFloat(data.hourly_pnl[0]);
+    for (var i = 0; i < data.hourly_pnl.length; i++) {
+      if (
+        parseFloat(data.hourly_pnl[i]) >
+        parseFloat(data.hourly_pnl[maxHourlyPnlIndex])
+      ) {
+        maxHourlyPnlIndex = i;
+        maxHourlyPnl = parseFloat(data.hourly_pnl[i]);
+      }
+    }
   
     return data.users[maxHourlyPnlIndex];
   }
@@ -36,7 +39,11 @@ function findUsernameWithMaxHourlyPnl(data) {
         for (const inst in data) {
           var username = findUsernameWithMaxHourlyPnl(data[inst]);
           var listItem = document.getElementById(inst);
-          var str = `${inst}\n${username}`;
+          var stockName = inst;
+          var teamName = username;
+  
+          // Updated content to have two lines
+          var str = `<div>${stockName}</div><div>${teamName}</div>`;
           listItem.innerHTML = str;
   
           // Remove previous color class
