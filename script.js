@@ -48,9 +48,11 @@ function findUsernameWithMaxHourlyPnl(data) {
   
           // Remove previous color class
           listItem.classList.remove("green", "red");
+
+          var myTeam = "team-001"; // Enter your team name e.g "team-001"
   
           // Add new color class based on the username
-          if (username !== "team-001") {
+          if (username !== myTeam) {
             listItem.classList.add("red");
           } else {
             listItem.classList.add("green");
