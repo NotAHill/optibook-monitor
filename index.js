@@ -2,7 +2,8 @@ const WebSocket = require("ws");
 const cors = require('cors');
 
 // URL of the WebSocket server
-const wsUrl = "wss://icl-b-1.optibook.net/visualizer/optibook/ws";
+const serverName = "b"; // Either "a" or "b"
+const wsUrl = "wss://icl-" + serverName + "-1.optibook.net/visualizer/optibook/ws";
 
 var hasDoc = false;
 var tabsId = null;
