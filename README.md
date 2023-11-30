@@ -8,14 +8,16 @@ A basic web scraper used to display team rankings for Optiver's educational trad
     ```bash
     npm i
     ```
+    
+2. Configure your team name (`myTeam`) and server name (`serverName`) in index.js and script.js respectively.
 
-2. Run the scraper:
+3. Run the scraper:
 
     ```bash
     node index.js
     ```
 
-3. Open in browser:
+4. Open in browser:
     ```bash
     open index.html
     ```
